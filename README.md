@@ -2,20 +2,22 @@
 
 printed-wood-arm-joints.js is 3D Printed Wood Arm Joints.
 
-This project use scad-builder.js and scad-builder-proj.js.
+This project use scad-builder.js and scad-builder-proj.js to generate .scad files.
 
 
 ## How to build
 
 Install Node.js and OpenSCAD.
 
-Run the following terminal command:
+Then, run the following terminal command:
 
 ```bash
 cd printed-wood-arm-joints
 npm install
 gulp build
 ```
+
+You can find .scad files in build directory.
 
 If you want to build STL files, Run the following terminal command:
 
