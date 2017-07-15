@@ -1,0 +1,69 @@
+defaults:
+  header: "/* \n
+          * Printed Wood Arm Joints\n
+          * \n
+          * Copyright 2017 Mitsuaki Fujii - silvershell100@gmail.com\n
+          * This program is free software: you can redistribute it and/or modify\n
+          * it under the terms of the GNU General Public License as published by\n
+          * the Free Software Foundation, either version 3 of the License, or\n
+          * (at your option) any later version.\n
+          *\n
+          * This program is distributed in the hope that it will be useful,\n
+          * but WITHOUT ANY WARRANTY; without even the implied warranty of\n
+          * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n
+          * GNU General Public License for more details.\n
+          *\n
+          * See <http://www.gnu.org/licenses/>.\n
+          */"
+  footer: ""
+  include: 
+  - ./lib/util.scad
+models:
+
+# - dest: forEdit
+#   module: printed-wood-arm-joints
+#   func: forEdit
+
+# - dest: preview1
+#   module: printed-wood-arm-joints
+#   func: preview1
+
+# - dest: preview2
+#   module: printed-wood-arm-joints
+#   func: preview2
+
+- dest: printedWoodArmJoint1
+  module: printed-wood-arm-joints
+  func: printedWoodArmJoint1
+
+- dest: printedWoodArmJoint2
+  module: printed-wood-arm-joints
+  func: printedWoodArmJoint2
+
+- dest: printedWoodArmJoint3
+  module: printed-wood-arm-joints
+  func: printedWoodArmJoint3
+
+- dest: printedWoodArmJoint4
+  module: printed-wood-arm-joints
+  func: printedWoodArmJoint4
+
+- dest: printedWoodArmJoint5
+  module: printed-wood-arm-joints
+  func: printedWoodArmJoint5
+
+- dest: printedWoodArmJointSpacer
+  module: printed-wood-arm-joints
+  func: printedWoodArmJointSpacer
+
+- dest: printedWoodArmJointNutHolder
+  module: printed-wood-arm-joints
+  func: printedWoodArmJointNutHolder
+
+- dest: printedWoodArmJointBoltHandle
+  module: printed-wood-arm-joints
+  func: printedWoodArmJointBoltHandle
+
+- dest: printedWoodArmJointAttachmentBottle
+  module: printed-wood-arm-joints
+  func: printedWoodArmJointAttachmentBottle

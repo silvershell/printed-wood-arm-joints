@@ -1,0 +1,28 @@
+{
+  "name": "printed-wood-arm-joints",
+  "version": "0.6.0",
+  "private": false,
+  "description": "",
+  "main": "src/printed-wood-arm-joints.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silvershell/printed-wood-arm-joints.git"
+  },
+  "keywords": [
+    "3dprinter",
+    "scad-builder",
+    "scad-builder-proj"
+  ],
+  "author": "silvershell <silvershell100@gmail.com> (https://github.com/silvershell/scad-builder)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/silvershell/printed-wood-arm-joints/issues"
+  },
+  "homepage": "https://github.com/silvershell/printed-wood-arm-joints#readme",
+  "dependencies": {
+    "scad-builder-proj": "^0.6.0"
+  }
+}
