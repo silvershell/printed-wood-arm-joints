@@ -1,5 +1,9 @@
 # printed-wood-arm-joints.js
 
+**Attention: This project is released under the General Public License version 3.**
+
+**There is no warranty for any problems that occurred using this project.**
+
 Thingiverse:
 [https://www.thingiverse.com/thing:2436790](https://www.thingiverse.com/thing:2436790)
 
