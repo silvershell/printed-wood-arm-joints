@@ -407,6 +407,9 @@ function printedWoodArmJointBoltHandle(opts){
 
 
 
+
+// -----------------------------------
+
 let printedWoodArmJointParam = {
     layer: 0.4,
     t: 3,
@@ -461,7 +464,7 @@ let printedWoodArmJointParam = {
     mount: {
         d: 24,
         fn: 32,
-        l: 42,
+        l: 34,
         t: 5,
         bottomT: 4,
         crfn: 16,
