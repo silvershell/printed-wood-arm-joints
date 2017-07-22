@@ -485,6 +485,9 @@ let printedWoodArmJointParam = {
         h: 11,
         fn: 64,
     },
+    spacer2: {
+        h: 6,
+    },
     attachment: {
         d: 20,
         h: 8,
@@ -499,7 +502,7 @@ let printedWoodArmJointParam = {
 }
 
 
-function printedWoodArmJointSpacer(options){
+function printedWoodArmJointSpacer1(options){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, options);
 
@@ -509,6 +512,16 @@ function printedWoodArmJointSpacer(options){
             cylinder({d:p.screw.d, h:p.spacer.h+0.2, fn:p.screw.fn}),
         ]),
     ])
+
+    return m
+}
+
+function printedWoodArmJointSpacer2(options){
+    let p = _.cloneDeep(printedWoodArmJointParam)
+    _.merge(p, options);
+    _.merge(p.spacer, p.spacer2);
+
+    let m = printedWoodArmJointSpacer1(p);
 
     return m
 }
@@ -1074,7 +1087,8 @@ module.exports = {
     printedWoodArmJoint3,
     printedWoodArmJoint4,
     printedWoodArmJoint5,
-    printedWoodArmJointSpacer,
+    printedWoodArmJointSpacer1,
+    printedWoodArmJointSpacer2,
     printedWoodArmJointNutHolder,
     printedWoodArmJointBoltHandle,
     printedWoodArmJointAttachmentBottle,

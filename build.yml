@@ -52,9 +52,14 @@ models:
   module: printed-wood-arm-joints
   func: printedWoodArmJoint5
 
-- dest: printedWoodArmJointSpacer
+- dest: printedWoodArmJointSpacer1
   module: printed-wood-arm-joints
-  func: printedWoodArmJointSpacer
+  func: printedWoodArmJointSpacer1
+
+- dest: printedWoodArmJointSpacer2
+  module: printed-wood-arm-joints
+  func: printedWoodArmJointSpacer2
+
 
 - dest: printedWoodArmJointNutHolder
   module: printed-wood-arm-joints
