@@ -69,6 +69,10 @@ models:
   module: printed-wood-arm-joints
   func: printedWoodArmJointBoltHandle
 
+- dest: printedWoodArmJointMounter
+  module: printed-wood-arm-joints
+  func: printedWoodArmJointMounter
+
 - dest: printedWoodArmJointAttachmentBottle
   module: printed-wood-arm-joints
   func: printedWoodArmJointAttachmentBottle
