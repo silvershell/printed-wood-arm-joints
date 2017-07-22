@@ -818,6 +818,13 @@ function printedWoodArmJoint3(options){
 
 
 function printedWoodArmJoint4(options){
+
+    let p = printedWoodArmJointParam;
+    let wy = p.rotateJointModule.t * (p.rotateJointModule.num+1)
+           + p.rotateJointModule.margin * p.rotateJointModule.num
+           + p.rotateJointModule.nutGrip.h
+           + p.cr * 2;
+
     return printedWoodArmJointBase({
         layer: 0,
         nut: {
@@ -827,7 +834,7 @@ function printedWoodArmJoint4(options){
             hole: {
                 enable: false,
             },
-            size: [20,40+0.8,30+0.6],
+            size: [20,wy,30+0.6],
         },
         rotateJointModule: {
             // enable: true,
