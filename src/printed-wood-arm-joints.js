@@ -479,7 +479,7 @@ let printedWoodArmJointParam = {
     },
     spacer: {
         d: 28,
-        h: 8,
+        h: 11,
         fn: 64,
     },
     attachment: {
