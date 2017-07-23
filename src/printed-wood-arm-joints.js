@@ -531,7 +531,14 @@ let printedWoodArmJointParam = {
             r: 3,
             size: [34,34,20],
         }
-    }
+    },
+    arm: {
+        l: 20,
+        disable: true,
+    },
+    rotateArm: {
+        h: 15+20,
+    },
 }
 
 
@@ -1042,16 +1049,6 @@ function printedWoodArmJointMounterArm(opts){
 
 function printedWoodArmJointMounter(opts){
     let p = _.cloneDeep(printedWoodArmJointParam)
-    _.merge(p, {
-        bottle: {
-            t: 3,
-            h: 15,
-            l: 60,
-            w: 57+2,           // milk bottle 50mm - 57mm
-            margin: 4,
-            r: 2,
-        },
-    });
     _.merge(p, opts);
 
     let { h, d, l, r, fn } = p.attachment;
@@ -1065,6 +1062,7 @@ function printedWoodArmJointMounter(opts){
                 d:d, h:h, fn:fn, cr:r
             }),
             arm,
+            // rotate([0,0,180], [
             mirror([1,0,0], [
                 arm,
             ]),
@@ -1088,10 +1086,6 @@ function printedWoodArmJointAttachmentBottle(opts){
             w: 57+2,           // milk bottle 50mm - 57mm
             margin: 4,
             r: 2,
-            arm: {
-                l: 20,
-                disable: true,
-            }
         },
     });
     _.merge(p, opts);
@@ -1109,12 +1103,10 @@ function printedWoodArmJointAttachmentBottle(opts){
         p.bottle.h
     ];
 
-    let slitL = (p.bottle.l - p.attachment.d/2)*6/10;
-
     // arm ------
 
     let armParam = _.cloneDeep(p.attachment);
-    _.merge( armParam, p.bottle.arm );
+    _.merge( armParam, p.arm );
     armParam.l += p.bottle.t;
     armParam.d += p.bottle.margin;
 
@@ -1159,6 +1151,47 @@ function printedWoodArmJointAttachmentBottle(opts){
 
     return m
 }
+
+
+function printedWoodArmJointAttachmentRotate(opts){
+    let p = _.cloneDeep(printedWoodArmJointParam)
+    _.merge(p, opts);
+
+    let { d, l, r, fn } = p.attachment;
+    let h = p.rotateArm.h;
+
+    // arm ------
+
+    let armParam = _.cloneDeep(p.attachment);
+    _.merge( armParam, p.arm );
+    armParam.l += d/2;
+
+    let arm = printedWoodArmJointMounterArm(armParam)
+    
+    // ----------
+    
+    let m =
+    difference([
+        union([
+            cylinderRounded({
+                d:d, h:h, fn:fn, cr:r
+            }),
+            mirror([1,0,0], [
+            rotate([0,0,90], [
+                arm,
+            ]),
+            ]),
+        ]),
+        
+        cylinder({d:p.screw.d, h:h+0.2, fn:fn}),
+    ])
+
+    return m
+}
+
+
+
+// ----------------------
 
 function preview1(){
     let m = union([
@@ -1209,4 +1242,5 @@ module.exports = {
     printedWoodArmJointBoltHandle,
     printedWoodArmJointMounter,
     printedWoodArmJointAttachmentBottle,
+    printedWoodArmJointAttachmentRotate,
 };

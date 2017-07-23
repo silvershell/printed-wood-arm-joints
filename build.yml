@@ -76,3 +76,8 @@ models:
 - dest: printedWoodArmJointAttachmentBottle
   module: printed-wood-arm-joints
   func: printedWoodArmJointAttachmentBottle
+
+- dest: printedWoodArmJointAttachmentRotate
+  module: printed-wood-arm-joints
+  func: printedWoodArmJointAttachmentRotate
+
