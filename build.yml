@@ -81,3 +81,11 @@ models:
   module: printed-wood-arm-joints
   func: printedWoodArmJointAttachmentRotate
 
+- dest: printedWoodArmJointAttachmentSmartPhoneGrip1
+  module: printed-wood-arm-joints
+  func: printedWoodArmJointAttachmentSmartPhoneGrip1
+
+- dest: printedWoodArmJointAttachmentSmartPhoneGrip2
+  module: printed-wood-arm-joints
+  func: printedWoodArmJointAttachmentSmartPhoneGrip2
+

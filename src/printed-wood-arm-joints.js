@@ -450,6 +450,15 @@ let printedWoodArmJointParam = {
         d: 11.5 + 0.8,
         h: 3.6,
     },
+    nutS: {
+        enable: true,
+        // // M4
+        // d: 8.1 + 0.3,
+        // h: 3.2 + 0.4,
+        // M3
+        d: 6.4 + 0.4,
+        h: 2.4 + 0.4,
+    },
     bar: {
         hole: {
             enable: true,
@@ -458,6 +467,13 @@ let printedWoodArmJointParam = {
     },
     screw: {
         d: 6 + 0.4,
+        fn: 16,
+    },
+    screwS: {
+        // // M4
+        // d: 4 + 0.4,
+        // M3
+        d: 3 + 0.6,
         fn: 16,
     },
     centerScrewHole: {
@@ -538,6 +554,33 @@ let printedWoodArmJointParam = {
     },
     rotateArm: {
         h: 15+20,
+    },
+    smartphone: {
+        t: 16-2,
+        w: 70,
+        margin: 10,
+        clipArm: {
+            w: 8.4 + 2*2,
+            t: 3,
+            fn: 16,
+            margin: 95,
+            wingFrontL: 7,
+            wingBackL: 20,
+            marginY: 16,
+            mount: {
+                t: 7,
+                w: 8.4 + 2*2,
+                wing: 3,
+            },
+            nutT: 1.6,
+        },
+        centerBar: {
+            w: 11.5 + 3*2,
+            t: 5+4+1,
+            t2: 5,
+            r: 1,
+            nutT: 1.6,
+        },
     },
 }
 
@@ -1191,6 +1234,151 @@ function printedWoodArmJointAttachmentRotate(opts){
 
 
 
+function printedWoodArmJointAttachmentSmartPhoneGrip1(opts){
+    let p = _.cloneDeep(printedWoodArmJointParam)
+    _.merge(p, opts);
+    
+    let barSize = [
+        p.smartphone.clipArm.margin + p.smartphone.clipArm.w * 2,
+        p.smartphone.centerBar.t2,
+        p.smartphone.centerBar.w,
+    ];
+
+    let mountSize = [
+        p.smartphone.centerBar.w,
+        p.smartphone.centerBar.t,
+        p.smartphone.centerBar.w,
+    ]
+
+    function makeScrewHole(d){
+        let r = 
+        translate([0, -0.1, barSize[2]/2], [
+        rotate([-90,0,0], [
+            cylinder({d:d, h:mountSize[1]+0.2, fn: p.screwS.fn})
+        ])
+        ])
+        
+        return r
+    }
+
+    let screwHole = makeScrewHole(p.screw.d);
+    let screwSHole = makeScrewHole(p.screwS.d);
+
+    let m =
+    difference([
+        union([
+            hullCube({size:barSize, r: p.smartphone.centerBar.r}),
+
+            translate([(barSize[0]-mountSize[0])/2, 0, 0], [
+                hullCube({size:mountSize, r: p.smartphone.centerBar.r}),
+            ]),
+        ]),
+
+        comment("screw hole"),
+        translate([p.smartphone.clipArm.w/2, 0, 0], [
+            screwSHole
+        ]),
+        translate([barSize[0]-p.smartphone.clipArm.w/2, 0, 0], [
+            screwSHole
+        ]),
+
+        comment("nut hole"),
+        translate([barSize[0]/2, p.smartphone.centerBar.nutT, barSize[2]/2], [
+        rotate([-90,-90,0], [
+            nutSlideHole({d:p.nut.d, h:p.mount.nutHoleH, l:mountSize[2]/2+0.1})
+        ])
+        ]),
+
+        translate([barSize[0]/2, 0, 0], [
+            screwHole
+        ]),
+    ])
+
+    return m
+}
+
+
+function printedWoodArmJointAttachmentSmartPhoneGrip2(opts){
+    let p = _.cloneDeep(printedWoodArmJointParam)
+    _.merge(p, opts);
+
+    // --------------------
+
+    let t = p.smartphone.clipArm.t;
+    let x1 = p.smartphone.clipArm.margin/2 + t/2;
+    let x2 = x1 - p.smartphone.clipArm.wingFrontL - t/2;
+    let x3 = x1 - p.smartphone.clipArm.wingBackL - t/2;
+    let x4 = p.smartphone.centerBar.w/2 + t;
+    let y1 = p.smartphone.t + t;
+    let y2 = -p.smartphone.clipArm.marginY;
+    let y3 = y2 - p.smartphone.clipArm.mount.t - t/2;
+    let y4 = y3 - p.smartphone.clipArm.mount.wing;
+    let h = p.smartphone.clipArm.w;
+    let mounterT = y2-y3;
+
+    let clipXY = [
+        [x2, y1],
+        [x1, y1],
+        [x1, 0],
+        [x3, 0],
+        [x4, y2],
+        [x4, y4],
+    ];
+
+    let cyl = cylinder({d:t, h:h, fn:p.smartphone.clipArm.fn});
+
+    let listClip = [];
+    for( let i=0; i<clipXY.length-1; i++ ){
+        listClip.push(
+            hull([
+                translate([clipXY[i][0], clipXY[i][1], 0], [
+                    cyl
+                ]),
+                translate([clipXY[i+1][0], clipXY[i+1][1], 0], [
+                    cyl
+                ]),
+            ])
+        );
+    }
+
+    listClip.push(
+        translate([0, y2-mounterT, 0], [
+            cube([x4, mounterT, h])
+        ])
+    );
+
+    let half = 
+    union(listClip)
+
+    let m = 
+    difference([
+        union([
+            half,
+
+            mirror([1,0,0], [
+                half,
+            ]),
+        ]),
+
+        translate([0,y2-p.smartphone.clipArm.nutT,h/2], [
+        rotate([90,-90,0], [
+            nutSlideHole({d:p.nutS.d, h:p.nutS.h, l:h/2+0.1}),
+        ]),
+        ]),
+
+        translate([0,y2+0.1,h/2], [
+        rotate([90,0,0], [
+            cylinder({d:p.screwS.d, h:mounterT+0.2, fn: p.screwS.fn})
+        ]),
+        ]),
+    ])
+
+    // console.log(JSON.stringify(m, null, "  "));
+
+    return m
+}
+
+
 // ----------------------
 
 function preview1(){
@@ -1243,4 +1431,6 @@ module.exports = {
     printedWoodArmJointMounter,
     printedWoodArmJointAttachmentBottle,
     printedWoodArmJointAttachmentRotate,
+    printedWoodArmJointAttachmentSmartPhoneGrip1,
+    printedWoodArmJointAttachmentSmartPhoneGrip2,
 };
