@@ -1133,7 +1133,7 @@ function smartPhoneGrip2(){
     let x1 = p.smartphone.clipArm.margin/2 + t/2;
     let x2 = x1 - p.smartphone.clipArm.wingFrontL - t/2;
     let x3 = x1 - p.smartphone.clipArm.wingBackL - t/2;
-    let x4 = p.smartphone.centerBar.w/2 + t;
+    let x4 = p.smartphone.centerBar.w/2 + t/2 + p.smartphone.clipArm.marginBar;
     let y1 = p.smartphone.t + t;
     let y2 = -p.smartphone.clipArm.marginY;
     let y3 = y2 - p.smartphone.clipArm.mount.t - t/2;
@@ -1224,6 +1224,24 @@ function preview2(){
     return m
 }
 
+function preview3(){
+    let p = _.cloneDeep(printedWoodArmJointParam)
+
+    let m = union([
+        smartPhoneGrip1(),
+        translate([0, 30, p.smartphone.centerBar.w/2], [
+        rotate([0, 90, 0], [
+            smartPhoneGrip2(),
+        ]),
+        ]),
+        // color([1,0,0], translate([-(40+0.8+8), (40+0.8+6), 0], rotate([0,0,180], joint4()))),
+        // translate([-110,(40+0.8+6)/2,(30+0.6+3*2)/2], rotate([0,90,0], joint5())),
+    ])
+
+    return m
+}
+
+
 
 function forEdit(){
 
@@ -1242,6 +1260,7 @@ module.exports = {
     forEdit,
     preview1,
     preview2,
+    preview3,
 
     joint1,
     joint2,

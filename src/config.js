@@ -132,6 +132,7 @@ let config = {
             wingFrontL: 7,
             wingBackL: 20,
             marginY: 16,
+            marginBar: 0.4,
             mount: {
                 t: 7,
                 w: 8.4 + 2*2,
