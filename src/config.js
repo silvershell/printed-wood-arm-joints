@@ -1,3 +1,22 @@
+// User configuration -------------------------
+
+let milkBottle = {
+    clipWidth: 57+2,
+};
+
+let smartphone = {
+    thickness: 16-2,
+    width: 70+1.6*2,
+    clip: {
+        margin: 95,
+        thickness: 3,
+    },
+};
+
+
+// --------------------------------------------
+
+
 let config = {
     layer: 0.4,
     t: 3,
@@ -116,19 +135,19 @@ let config = {
         t: 3,
         h: 15,
         l: 60,
-        w: 57+2,           // milk bottle 50mm - 57mm
+        w: milkBottle.clipWidth,           // milk bottle 50mm - 57mm
         margin: 4,
         r: 2,
     },
     smartphone: {
-        t: 16-2,
-        w: 70+1.6*2,
+        t: smartphone.thickness,
+        w: smartphone.width,
         margin: 10,
         clipArm: {
             w: 8.4 + 2*2,
-            t: 3,
+            t: smartphone.clip.thickness,
             fn: 16,
-            margin: 95,
+            margin: smartphone.clip.margin,
             wingFrontL: 7,
             wingBackL: 20,
             marginY: 10,
