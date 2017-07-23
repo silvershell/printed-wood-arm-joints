@@ -995,6 +995,51 @@ function printedWoodArmJoint5(options){
 }
 
 
+function printedWoodArmJointMounterArm(opts){
+    let { h, d, l, r, fn } = opts;
+    
+    let p = printedWoodArmJointParam;
+
+    let diff = [
+        union([
+            cylinderRounded({
+                d:h, h:d/2, fn:fn, cr:r
+            }),
+            
+            translate([0,-h/2,0], [
+                hullCube({
+                    r: r,
+                    size: [l, h, d/2],
+                    // ctype: [0,0,0,0,1,1,1,1],
+                }),
+            ])
+        ]),
+
+        translate([0,0,-0.1], [
+            cylinder({d:p.screw.d, h:d/2+0.2, fn:p.screw.fn}),
+        ]),
+    ]
+
+    if( !opts.disable ){
+        diff.push(
+            translate([0,0,d/2-p.nut.h+0.1], [
+            rotate([0,0,30], [
+                cylinder({d:p.nut.d, h:p.nut.h+0.1, fn:6}),
+            ]),
+            ])
+        );
+    }
+
+    let arm = 
+    translate([-l,0,h/2], [
+    rotate([90,0,0], [
+    difference(diff)
+    ])
+    ])
+
+    return arm
+}
+
 function printedWoodArmJointMounter(opts){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, {
@@ -1009,62 +1054,15 @@ function printedWoodArmJointMounter(opts){
     });
     _.merge(p, opts);
 
-    
-    let sIn = [
-        p.bottle.w,
-        p.bottle.w,
-        p.bottle.h+0.2
-    ];
-
-    let sOut = [
-        p.bottle.w + p.bottle.t*2,
-        p.bottle.w + p.bottle.t*2,
-        p.bottle.h
-    ];
-
-    let slitL = (p.bottle.l - p.attachment.d/2)*6/10;
-
     let { h, d, l, r, fn } = p.attachment;
     
-    let arm = 
-    translate([-l,0,h/2], [
-    rotate([90,0,0], [
-    difference([
-        union([
-            // cylinderRoundTop({
-            cylinderRounded({
-                d:h, h:d/2, fn:fn, cr:r
-            }),
-            
-            translate([0,-h/2,0], [
-                hullCube({
-                    r: r,
-                    size: [l, h, d/2],
-                    ctype: [1,1,1,1,1,1,1,1],
-                    // ctype: [0,0,0,0,1,1,1,1],
-                }),
-            ])
-        ]),
-
-        translate([0,0,d/2-p.nut.h+0.1], [
-        rotate([0,0,30], [
-            cylinder({d:p.nut.d, h:p.nut.h+0.1, fn:6}),
-        ]),
-        ]),
-
-        translate([0,0,-0.1], [
-            cylinder({d:p.screw.d, h:d/2+0.2, fn:p.screw.fn}),
-        ]),
-    ])
-    ])
-    ])
+    let arm = printedWoodArmJointMounterArm(p.attachment)
     
     let m =
     difference([
         union([
             cylinderRoundTop({
-                d:p.attachment.d, h:p.bottle.h, fn:p.attachment.fn,
-                cr:p.bottle.r
+                d:d, h:h, fn:fn, cr:r
             }),
             arm,
             mirror([1,0,0], [
@@ -1072,10 +1070,8 @@ function printedWoodArmJointMounter(opts){
             ]),
         ]),
         
-        cylinder({d:p.screw.d, h:p.bottle.h+0.2, fn:p.attachment.fn}),
+        cylinder({d:p.screw.d, h:h+0.2, fn:fn}),
     ])
-
-    // m = arm
 
     return m
 }
@@ -1092,6 +1088,10 @@ function printedWoodArmJointAttachmentBottle(opts){
             w: 57+2,           // milk bottle 50mm - 57mm
             margin: 4,
             r: 2,
+            arm: {
+                l: 20,
+                disable: true,
+            }
         },
     });
     _.merge(p, opts);
@@ -1111,6 +1111,19 @@ function printedWoodArmJointAttachmentBottle(opts){
 
     let slitL = (p.bottle.l - p.attachment.d/2)*6/10;
 
+    // arm ------
+
+    let armParam = _.cloneDeep(p.attachment);
+    _.merge( armParam, p.bottle.arm );
+    armParam.l += p.bottle.t;
+    armParam.d += p.bottle.margin;
+
+    let arm = printedWoodArmJointMounterArm(armParam)
+    
+    // ----------
+    
+    let holeY = armParam.l + armParam.d/2 + p.bottle.t;
+
     let m =
     difference([
         union([
@@ -1120,17 +1133,10 @@ function printedWoodArmJointAttachmentBottle(opts){
                     size: sOut,
                 }),
             ]),
-            translate([0, -p.bottle.l, 0], [
-                cylinderRoundTop({
-                    d:p.attachment.d, h:p.bottle.h, fn:p.attachment.fn,
-                    cr:p.bottle.r
-                }),
-                translate([-p.attachment.d/2, 0, 0], [
-                    hullCube({
-                        r: p.bottle.r, 
-                        size: [p.attachment.d, p.bottle.l+p.bottle.t, p.bottle.h]
-                    }),
-                ]),
+            translate([0, p.bottle.t, 0], [
+            rotate([0,0,90], [
+                arm,
+            ]),
             ]),
         ]),
 
@@ -1141,22 +1147,13 @@ function printedWoodArmJointAttachmentBottle(opts){
             }),
         ]),
 
-        translate([0, -p.bottle.l, -0.1], [
-            cylinder({d:p.screw.d, h:p.bottle.h+0.2, fn:p.attachment.fn}),
-        ]),
 
-        translate([-p.bottle.margin/2, -slitL+p.bottle.t+0.1, -0.1], [
-            cube([p.bottle.margin, slitL+p.bottle.t+0.1, p.bottle.h+0.2]),
-            cube([p.attachment.d, 2, p.bottle.h+0.2]),
+        translate([armParam.d/4-p.bottle.margin/2, -holeY+p.bottle.t-0.1, -0.1], [
+        cube([
+            p.bottle.margin,
+            holeY + 0.2,
+            armParam.d + 0.2,
         ]),
-
-        translate([-p.attachment.d/2-0.1, -slitL+p.bottle.t+p.nut.d/2+p.t+0.1, p.bottle.h/2], [
-            rotate([0, 90, 0], [
-                cylinder({d:p.screw.d, h:p.attachment.d+0.2, fn:p.screw.fn}),
-                translate([0,0,p.attachment.d-p.nut.h+0.1], [
-                    cylinder({d:p.nut.d, h:p.nut.h+0.1, fn:6}),
-                ])
-            ]),
         ]),
     ])
 
