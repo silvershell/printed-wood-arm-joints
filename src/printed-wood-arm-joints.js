@@ -1130,7 +1130,8 @@ function smartPhoneGrip2(){
     // --------------------
 
     let t = p.smartphone.clipArm.t;
-    let x1 = p.smartphone.clipArm.margin/2 + t/2;
+    // let x1 = p.smartphone.clipArm.margin/2 + t/2;
+    let x1 = p.smartphone.w/2 + t/2;
     let x2 = x1 - p.smartphone.clipArm.wingFrontL - t/2;
     let x3 = x1 - p.smartphone.clipArm.wingBackL - t/2;
     let x4 = p.smartphone.centerBar.w/2 + t/2 + p.smartphone.clipArm.marginBar;
