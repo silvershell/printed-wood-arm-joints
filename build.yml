@@ -32,9 +32,9 @@ models:
 #   module: printed-wood-arm-joints
 #   func: preview2
 
-- dest: preview3
-  module: printed-wood-arm-joints
-  func: preview3
+# - dest: preview3
+#   module: printed-wood-arm-joints
+#   func: preview3
 
 - dest: joint1
   module: printed-wood-arm-joints
