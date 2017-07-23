@@ -112,6 +112,14 @@ let config = {
     rotateArm: {
         h: 15+20,
     },
+    bottle: {
+        t: 3,
+        h: 15,
+        l: 60,
+        w: 57+2,           // milk bottle 50mm - 57mm
+        margin: 4,
+        r: 2,
+    },
     smartphone: {
         t: 16-2,
         w: 70+1.6*2,

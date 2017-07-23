@@ -728,12 +728,12 @@ function printedWoodArmJointBase(options){
 
 
 
-function joint1(options){
+function joint1(){
     return printedWoodArmJointBase({})
 }
 
 
-function joint2(options){
+function joint2(){
     return printedWoodArmJointBase({
         nut: {
             enable: false,
@@ -750,7 +750,7 @@ function joint2(options){
     })
 }
 
-function joint3(options){
+function joint3(){
     return printedWoodArmJointBase({
         nut: {
             enable: false,
@@ -762,7 +762,7 @@ function joint3(options){
 }
 
 
-function joint4(options){
+function joint4(){
 
     let p = printedWoodArmJointParam;
     let wy = p.rotateJointModule.t * (p.rotateJointModule.num+1)
@@ -782,13 +782,9 @@ function joint4(options){
             size: [20,wy,30+0.6],
         },
         rotateJointModule: {
-            // enable: true,
             nutGrip: {
                 enable: true,
             }
-        },
-        sideScrewHole: {
-            // enable: true,
         },
         woodScrewHole: {
             enable: false,
@@ -797,9 +793,8 @@ function joint4(options){
 }
 
 
-function joint5(options){
+function joint5(){
     let p = _.cloneDeep(printedWoodArmJointParam)
-    _.merge(p, options);
 
     let h = p.bar.size[2] + p.t*2 + p.mount.t*2;
     let bottomT = p.mount.nutHoleH + p.mount.bottomT*2;
@@ -951,7 +946,6 @@ function mounter(opts){
                 d:d, h:h, fn:fn, cr:r
             }),
             arm,
-            // rotate([0,0,180], [
             mirror([1,0,0], [
                 arm,
             ]),
@@ -965,20 +959,8 @@ function mounter(opts){
 
 
 
-function attachmentMilkBottle(opts){
-    let p = _.cloneDeep(printedWoodArmJointParam)
-    _.merge(p, {
-        bottle: {
-            t: 3,
-            h: 15,
-            l: 60,
-            w: 57+2,           // milk bottle 50mm - 57mm
-            margin: 4,
-            r: 2,
-        },
-    });
-    _.merge(p, opts);
-
+function attachmentMilkBottle(){
+    let p = _.cloneDeep(printedWoodArmJointParam);
     
     let sIn = [
         p.bottle.w,
@@ -1042,9 +1024,8 @@ function attachmentMilkBottle(opts){
 }
 
 
-function attachmentRotate(opts){
+function attachmentRotate(){
     let p = _.cloneDeep(printedWoodArmJointParam)
-    _.merge(p, opts);
 
     let { d, l, r, fn } = p.attachment;
     let h = p.rotateArm.h;
@@ -1080,9 +1061,8 @@ function attachmentRotate(opts){
 
 
 
-function smartPhoneGrip1(opts){
+function smartPhoneGrip1(){
     let p = _.cloneDeep(printedWoodArmJointParam)
-    _.merge(p, opts);
     
     let barSize = [
         p.smartphone.clipArm.margin + p.smartphone.clipArm.w * 2,
@@ -1144,9 +1124,8 @@ function smartPhoneGrip1(opts){
 }
 
 
-function smartPhoneGrip2(opts){
+function smartPhoneGrip2(){
     let p = _.cloneDeep(printedWoodArmJointParam)
-    _.merge(p, opts);
 
     // --------------------
 
@@ -1218,7 +1197,7 @@ function smartPhoneGrip2(opts){
         ]),
         ]),
     ])
-    
+
     return m
 }
 
