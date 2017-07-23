@@ -366,7 +366,7 @@ function rotateJointModule1(options){
 }
 
 
-function printedWoodArmJointBoltHandle(opts){
+function boltHandle(opts){
     let p = {
         h: 10,
         t: 3,
@@ -421,7 +421,7 @@ function printedWoodArmJointBoltHandle(opts){
 
     let m =
     difference([
-        comment("<- printedWoodArmJointBoltHandle"),
+        comment("<- boltHandle"),
         hull(list),
         translate([0, 0, p.bottomT],[
             comment("<- bolt head hole"),
@@ -585,7 +585,7 @@ let printedWoodArmJointParam = {
 }
 
 
-function printedWoodArmJointSpacer1(options){
+function spacer1(options){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, options);
 
@@ -599,17 +599,17 @@ function printedWoodArmJointSpacer1(options){
     return m
 }
 
-function printedWoodArmJointSpacer2(options){
+function spacer2(options){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, options);
     _.merge(p.spacer, p.spacer2);
 
-    let m = printedWoodArmJointSpacer1(p);
+    let m = spacer1(p);
 
     return m
 }
 
-function printedWoodArmJointNutHolder(options){
+function nutHolder(options){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, options);
 
@@ -882,12 +882,12 @@ function printedWoodArmJointBase(options){
 
 
 
-function printedWoodArmJoint1(options){
+function joint1(options){
     return printedWoodArmJointBase({})
 }
 
 
-function printedWoodArmJoint2(options){
+function joint2(options){
     return printedWoodArmJointBase({
         nut: {
             enable: false,
@@ -904,7 +904,7 @@ function printedWoodArmJoint2(options){
     })
 }
 
-function printedWoodArmJoint3(options){
+function joint3(options){
     return printedWoodArmJointBase({
         nut: {
             enable: false,
@@ -916,7 +916,7 @@ function printedWoodArmJoint3(options){
 }
 
 
-function printedWoodArmJoint4(options){
+function joint4(options){
 
     let p = printedWoodArmJointParam;
     let wy = p.rotateJointModule.t * (p.rotateJointModule.num+1)
@@ -951,7 +951,7 @@ function printedWoodArmJoint4(options){
 }
 
 
-function printedWoodArmJoint5(options){
+function joint5(options){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, options);
 
@@ -1045,7 +1045,7 @@ function printedWoodArmJoint5(options){
 }
 
 
-function printedWoodArmJointMounterArm(opts){
+function mounterArm(opts){
     let { h, d, l, r, fn } = opts;
     
     let p = printedWoodArmJointParam;
@@ -1090,13 +1090,13 @@ function printedWoodArmJointMounterArm(opts){
     return arm
 }
 
-function printedWoodArmJointMounter(opts){
+function mounter(opts){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, opts);
 
     let { h, d, l, r, fn } = p.attachment;
     
-    let arm = printedWoodArmJointMounterArm(p.attachment)
+    let arm = mounterArm(p.attachment)
     
     let m =
     difference([
@@ -1119,7 +1119,7 @@ function printedWoodArmJointMounter(opts){
 
 
 
-function printedWoodArmJointAttachmentBottle(opts){
+function attachmentMilkBottle(opts){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, {
         bottle: {
@@ -1153,7 +1153,7 @@ function printedWoodArmJointAttachmentBottle(opts){
     armParam.l += p.bottle.t;
     armParam.d += p.bottle.margin;
 
-    let arm = printedWoodArmJointMounterArm(armParam)
+    let arm = mounterArm(armParam)
     
     // ----------
     
@@ -1196,7 +1196,7 @@ function printedWoodArmJointAttachmentBottle(opts){
 }
 
 
-function printedWoodArmJointAttachmentRotate(opts){
+function attachmentRotate(opts){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, opts);
 
@@ -1209,7 +1209,7 @@ function printedWoodArmJointAttachmentRotate(opts){
     _.merge( armParam, p.arm );
     armParam.l += d/2;
 
-    let arm = printedWoodArmJointMounterArm(armParam)
+    let arm = mounterArm(armParam)
     
     // ----------
     
@@ -1234,7 +1234,7 @@ function printedWoodArmJointAttachmentRotate(opts){
 
 
 
-function printedWoodArmJointAttachmentSmartPhoneGrip1(opts){
+function smartPhoneGrip1(opts){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, opts);
     
@@ -1298,7 +1298,7 @@ function printedWoodArmJointAttachmentSmartPhoneGrip1(opts){
 }
 
 
-function printedWoodArmJointAttachmentSmartPhoneGrip2(opts){
+function smartPhoneGrip2(opts){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, opts);
 
@@ -1383,8 +1383,8 @@ function printedWoodArmJointAttachmentSmartPhoneGrip2(opts){
 
 function preview1(){
     let m = union([
-        printedWoodArmJoint1(),
-        color([1,0,0], translate([-(40+0.8+8), (40+0.8+6), 0], rotate([0,0,180], printedWoodArmJoint2()))),
+        joint1(),
+        color([1,0,0], translate([-(40+0.8+8), (40+0.8+6), 0], rotate([0,0,180], joint2()))),
     ])
 
     return m
@@ -1393,9 +1393,9 @@ function preview1(){
 
 function preview2(){
     let m = union([
-        printedWoodArmJoint3(),
-        color([1,0,0], translate([-(40+0.8+8), (40+0.8+6), 0], rotate([0,0,180], printedWoodArmJoint4()))),
-        translate([-110,(40+0.8+6)/2,(30+0.6+3*2)/2], rotate([0,90,0], printedWoodArmJoint5())),
+        joint3(),
+        color([1,0,0], translate([-(40+0.8+8), (40+0.8+6), 0], rotate([0,0,180], joint4()))),
+        translate([-110,(40+0.8+6)/2,(30+0.6+3*2)/2], rotate([0,90,0], joint5())),
     ])
 
     return m
@@ -1419,18 +1419,19 @@ module.exports = {
     forEdit,
     preview1,
     preview2,
-    printedWoodArmJoint1,
-    printedWoodArmJoint2,
-    printedWoodArmJoint3,
-    printedWoodArmJoint4,
-    printedWoodArmJoint5,
-    printedWoodArmJointSpacer1,
-    printedWoodArmJointSpacer2,
-    printedWoodArmJointNutHolder,
-    printedWoodArmJointBoltHandle,
-    printedWoodArmJointMounter,
-    printedWoodArmJointAttachmentBottle,
-    printedWoodArmJointAttachmentRotate,
-    printedWoodArmJointAttachmentSmartPhoneGrip1,
-    printedWoodArmJointAttachmentSmartPhoneGrip2,
+
+    joint1,
+    joint2,
+    joint3,
+    joint4,
+    joint5,
+    spacer1,
+    spacer2,
+    nutHolder,
+    boltHandle,
+    mounter,
+    attachmentMilkBottle,
+    attachmentRotate,
+    smartPhoneGrip1,
+    smartPhoneGrip2,
 };

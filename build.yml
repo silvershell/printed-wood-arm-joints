@@ -32,60 +32,60 @@ models:
 #   module: printed-wood-arm-joints
 #   func: preview2
 
-- dest: printedWoodArmJoint1
+- dest: joint1
   module: printed-wood-arm-joints
-  func: printedWoodArmJoint1
+  func: joint1
 
-- dest: printedWoodArmJoint2
+- dest: joint2
   module: printed-wood-arm-joints
-  func: printedWoodArmJoint2
+  func: joint2
 
-- dest: printedWoodArmJoint3
+- dest: joint3
   module: printed-wood-arm-joints
-  func: printedWoodArmJoint3
+  func: joint3
 
-- dest: printedWoodArmJoint4
+- dest: joint4
   module: printed-wood-arm-joints
-  func: printedWoodArmJoint4
+  func: joint4
 
-- dest: printedWoodArmJoint5
+- dest: joint5
   module: printed-wood-arm-joints
-  func: printedWoodArmJoint5
+  func: joint5
 
-- dest: printedWoodArmJointSpacer1
+- dest: spacer1
   module: printed-wood-arm-joints
-  func: printedWoodArmJointSpacer1
+  func: spacer1
 
-- dest: printedWoodArmJointSpacer2
+- dest: spacer2
   module: printed-wood-arm-joints
-  func: printedWoodArmJointSpacer2
+  func: spacer2
 
 
-- dest: printedWoodArmJointNutHolder
+- dest: nutHolder
   module: printed-wood-arm-joints
-  func: printedWoodArmJointNutHolder
+  func: nutHolder
 
-- dest: printedWoodArmJointBoltHandle
+- dest: boltHandle
   module: printed-wood-arm-joints
-  func: printedWoodArmJointBoltHandle
+  func: boltHandle
 
-- dest: printedWoodArmJointMounter
+- dest: mounter
   module: printed-wood-arm-joints
-  func: printedWoodArmJointMounter
+  func: mounter
 
-- dest: printedWoodArmJointAttachmentBottle
+- dest: attachmentMilkBottle
   module: printed-wood-arm-joints
-  func: printedWoodArmJointAttachmentBottle
+  func: attachmentMilkBottle
 
-- dest: printedWoodArmJointAttachmentRotate
+- dest: attachmentRotate
   module: printed-wood-arm-joints
-  func: printedWoodArmJointAttachmentRotate
+  func: attachmentRotate
 
-- dest: printedWoodArmJointAttachmentSmartPhoneGrip1
+- dest: smartPhoneGrip1
   module: printed-wood-arm-joints
-  func: printedWoodArmJointAttachmentSmartPhoneGrip1
+  func: smartPhoneGrip1
 
-- dest: printedWoodArmJointAttachmentSmartPhoneGrip2
+- dest: smartPhoneGrip2
   module: printed-wood-arm-joints
-  func: printedWoodArmJointAttachmentSmartPhoneGrip2
+  func: smartPhoneGrip2
 
