@@ -557,7 +557,7 @@ let printedWoodArmJointParam = {
     },
     smartphone: {
         t: 16-2,
-        w: 70,
+        w: 70+1.6*2,
         margin: 10,
         clipArm: {
             w: 8.4 + 2*2,
