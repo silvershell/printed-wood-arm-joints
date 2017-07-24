@@ -69,9 +69,13 @@ models:
   module: printed-wood-arm-joints
   func: nutHolder
 
-- dest: boltHandle
+- dest: boltHandle1
   module: printed-wood-arm-joints
-  func: boltHandle
+  func: boltHandle1
+
+- dest: boltHandle2
+  module: printed-wood-arm-joints
+  func: boltHandle2
 
 - dest: mounter
   module: printed-wood-arm-joints

@@ -445,6 +445,21 @@ function boltHandle(opts){
 
 // -----------------------------------
 
+
+function boltHandle1(opts){
+    return boltHandle({
+        bottomT: 3,
+    })
+}
+
+
+function boltHandle2(opts){
+    return boltHandle({
+        bottomT: 10-4,
+    })
+}
+
+
 function spacer1(options){
     let p = _.cloneDeep(printedWoodArmJointParam)
     _.merge(p, options);
@@ -1271,7 +1286,8 @@ module.exports = {
     spacer1,
     spacer2,
     nutHolder,
-    boltHandle,
+    boltHandle1,
+    boltHandle2,
     mounter,
     attachmentMilkBottle,
     attachmentRotate,
