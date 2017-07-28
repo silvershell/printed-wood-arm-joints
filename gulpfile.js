@@ -1,1 +1,1 @@
-require('scad-builder-proj').gulpSetup()
+require('scad-builder').gulpSetup()

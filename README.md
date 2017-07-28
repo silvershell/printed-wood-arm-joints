@@ -9,7 +9,7 @@ Thingiverse:
 
 printed-wood-arm-joints.js is 3D Printed Wood Arm Joints.
 
-This project use scad-builder.js and scad-builder-proj.js to generate .scad files.
+This project use scad-builder.js to generate .scad files.
 
 
 ## How to build

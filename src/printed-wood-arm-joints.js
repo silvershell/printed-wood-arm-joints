@@ -2,7 +2,7 @@
 // #scad-builder:start
 const {
   call, comment, func, generateScad, GeneratorScad, genImportSrc, square, circle, scircle, polygon, cube, sphere, cylinder, polyhedron, union, difference, intersection, translate, scale, rotate, mirror, multmatrix, minkowski, hull, linear_extrude, rotate_extrude, color, text, 
-} = require('scad-builder');
+} = require('scad-builder-core');
 // #scad-builder:end
 
 const _ = require('lodash');
